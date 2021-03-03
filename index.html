@@ -8,9 +8,8 @@
 </head>
 <body>
     <div id="app">
-        <div v-bind="{
-            name:attr
-        }"></div>
+       <button v-on:click ="addCounter">点击+1</button>
+       <p>{{ counter }}</p>
 
         
 
@@ -20,10 +19,12 @@
         const vm = new Vue({
             el:"#app",
             data:{
-               type:"D",
-               attr: "a",
-               xx:"sss",
-               ss:"xxx"
+              counter:0
+            },
+            methods:{
+                addCounter(){
+                    this.counter ++;
+                }
             }
         })
     </script>
