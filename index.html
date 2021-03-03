@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app" v-text ="msg1">{{ msg }}
+    <div id="app" v-show="show">{{ msg }}
 
         
 
@@ -17,6 +17,7 @@
         const vm = new Vue({
             el:"#app",
             data:{
+                show:true,
                 msg:"xjl ",
                 msg1:"zh"
             }
