@@ -7,13 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">{{ msg }}</div>
+    <div id="app">{{ msg }}
+
+        {{ wife }}
+
+    </div>
     <script src="./vue.js"></script>
     <script>
         const vm = new Vue({
             el:"#app",
             data:{
-                msg:"xjl你真帅"
+                msg:"xjl你真帅",
+                wife:"zh"
             }
         })
     </script>
