@@ -8,9 +8,13 @@
 </head>
 <body>
     <div id="app">
-       <button v-on:click ="addCounter">点击+1</button>
-       <p>{{ counter }}</p>
-
+      
+       <div @click.capture = "alert('div')" :style="{ background:'red'}">
+           <button @click="alert('button')">点击</button>
+       </div>
+       <!-- <form @submit.prevent="onSubmit" >
+           <input type="submit">
+       </form> -->
         
 
     </div>
@@ -22,8 +26,11 @@
               counter:0
             },
             methods:{
-                addCounter(){
-                    this.counter ++;
+                alert(str){
+                    alert(str)
+                },
+                onSubmit(){
+                    console.log('a')
                 }
             }
         })
