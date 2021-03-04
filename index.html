@@ -8,13 +8,7 @@
 </head>
 <body>
     <div id="app">
-        <ul>
-            <li v-for="(person,index) in persons" :key="person.name">{{ person.name }}
-                <input type="text">
-                <button @click="handleClick(index)">下移</button>
-
-            </li>
-        </ul>
+        {{ msg.split("") }}
 
     </div>
     <script src="./vue.js"></script>
@@ -22,23 +16,13 @@
         const vm = new Vue({
             el:"#app",
            data:{
-               persons:[
-                   {name:"xjl",age:18},
-                   {name:"hz",age:19},
-                   {name:"sjm",age:20},
-                   {name:"yyl",age:21}
-               ],
-               xjl:{
-                   name:"xjl",
-                   age:18,
-                   height:"180cm"
-               }
+                msg:'xjl,你真帅'
+           },
+           computed:{
+
            },
            methods:{
-               handleClick(index){
-                    const arr =  this.persons.splice(index,1);
-                    this.persons.splice(index + 1,0,...arr);
-               }
+             
            }
         })
     </script>
