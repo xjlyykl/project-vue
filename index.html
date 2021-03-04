@@ -8,31 +8,38 @@
 </head>
 <body>
     <div id="app">
-      
-       <div @click.capture = "alert('div')" :style="{ background:'red'}">
-           <button @click="alert('button')">点击</button>
-       </div>
-       <!-- <form @submit.prevent="onSubmit" >
-           <input type="submit">
-       </form> -->
-        
+        <ul>
+            <li v-for="(person,index) in persons" :key="person.name">{{ person.name }}
+                <input type="text">
+                <button @click="handleClick(index)">下移</button>
+
+            </li>
+        </ul>
 
     </div>
     <script src="./vue.js"></script>
     <script>
         const vm = new Vue({
             el:"#app",
-            data:{
-              counter:0
-            },
-            methods:{
-                alert(str){
-                    alert(str)
-                },
-                onSubmit(){
-                    console.log('a')
-                }
-            }
+           data:{
+               persons:[
+                   {name:"xjl",age:18},
+                   {name:"hz",age:19},
+                   {name:"sjm",age:20},
+                   {name:"yyl",age:21}
+               ],
+               xjl:{
+                   name:"xjl",
+                   age:18,
+                   height:"180cm"
+               }
+           },
+           methods:{
+               handleClick(index){
+                    const arr =  this.persons.splice(index,1);
+                    this.persons.splice(index + 1,0,...arr);
+               }
+           }
         })
     </script>
 </body>
