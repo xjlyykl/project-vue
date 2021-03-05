@@ -5,49 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./index.css">
+    
 </head>
 <body>
     <div id="app">
-        <div class="header">
-            <div class="container">
-                <div class="logo">toDoList</div>
-                <div class="input-area">
-                    <input type="text" @input="handleInput" :value="curMask">
-                    <button @click="addClick">添加</button>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <h2>
-                <span>正在进行</span>
-                <span class="mask-num">{{ needDoList.length }}</span>
-            </h2>
-            <ul class="mask-list">
-                <li v-for="(mask,index) in needDoList" :key="mask + index">
-                    <div>
-                        <input type="checkbox" @change = "doCheck(index,'mask')">
-                        <span>{{ mask }}</span>
-                    </div>
-                    <button @click="deleteMask(index,'mask')">删除</button>
-                </li>
-            </ul>
-        </div>
-        <div class="container">
-            <h2>
-                <span>已经完成</span>
-                <span class="mask-num">{{ finished.length }}</span>
-            </h2>
-            <ul class="mask-list complete-list">
-                <li v-for="(did,index) in finished" :key="did + index">
-                    <div>
-                        <input type="checkbox" @change = "doCheck(index,'finished')">
-                        <span>{{ did }}</span>
-                    </div>
-                    <button @click="deleteMask(index,'finished')">删除</button>
-                </li>
-            </ul>
-        </div>
+       <!-- <input type="text" v-model = "msg"> -->
+       <input type="checkbox" id="xjl" value="xjl" v-model="checkList" />
+       <label for="xjl">xjl</label>
+
+       <input type="checkbox" id="hz" value="hz" v-model="checkList"/>
+       <label for="hz">hz</label>
+
+       <input type="checkbox" id="sjm" value="sjm"  v-model="checkList"/>
+       <label for="sjm">sjm</label>
        
 
     </div>
@@ -56,40 +26,14 @@
         const vm = new Vue({
             el:"#app",
            data:{
-            curMask:"",
-            needDoList:['吃饭','睡觉',"da"],
-            finished:[],
+            msg:"hello world",
+            checked:true,
+            checkList:[]
            },
            methods:{
-                handleInput(e){
-                    this.curMask = e.target.value;
-                    
-                },
-                addClick(){
-                    this.needDoList.push(this.curMask)
-                    this.curMask = "";
-                    console.log(this.needDoList);
-                },
-                doCheck(index,type){
-                    if(type === "mask"){
-                        const finish = this.needDoList.splice(index,1);
-                    this.finished.push(...finish);
-                    }else{
-                        const finish = this.finished.splice(index,1);
-                        this.needDoList.push(...finish);
-
-                    }
-
+               
                    
-                },
-                deleteMask(index,type){
-                    if(type==="mask"){
-                        const finish = this.needDoList.splice(index,1);
-                    }else{
-                        this.finished.splice(index,1);
-                    }
-                }
-
+                
              }
         })
       
