@@ -9,28 +9,42 @@
 </head>
 <body>
     <div id="app">
-        <div  :style="{fontSize:postFontSize + 'em' }">
-          <blog-post v-for="post in posts" :post = "post" :key="post.id"
-            @enlarge-text="postFontSize += 0.1"
+        
+       <my-cmp>
+         <template v-slot:header>
+           <div>投部</div>
+         </template>
           
-          />
-        </div>
-       
+          <p>主要内容</p>
+
+          <template v-slot:footer>
+            <div>底部</div>
+          </template>
+          
+
+
+       </my-cmp>
        
 
     </div>
     <script src="./vue.js"></script>
   
     <script>
-        Vue.component("blog-post",{
+        Vue.component("my-cmp",{
           props:{
             post:Object,
           },
           template:`
-              <div>
-                  <h3>{{ post.title }}</h3>
-                  <div>{{ post.content }}</div>  
-                  <button @click="$emit('enlarge-text')">放大字号</button>
+              <div class="container">
+                  <header>
+                      <slot name="header"></slot>
+                  </header>
+                  <main>
+                    <slot></slot>  
+                  </main>
+                  <footer>
+                      <slot name="footer"></slot>
+                    </footer>
                 
               </div>
           `
