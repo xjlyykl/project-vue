@@ -9,58 +9,40 @@
 </head>
 <body>
     <div id="app">
+        <button v-for="page in pages" :key="page.id"
+          @click="cmpPage  =page.cmp"
         
-       <my-cmp>
-         <template v-slot:header>
-           <div>投部</div>
-         </template>
-          
-          <p>主要内容</p>
-
-          <template v-slot:footer>
-            <div>底部</div>
-          </template>
-          
-
-
-       </my-cmp>
+        >{{
+          page.name  
+        }}</button>
+       <component :is="cmpPage"></component>
        
 
     </div>
     <script src="./vue.js"></script>
   
     <script>
-        Vue.component("my-cmp",{
-          props:{
-            post:Object,
-          },
+        Vue.component("cmp-post",{
+         
           template:`
-              <div class="container">
-                  <header>
-                      <slot name="header"></slot>
-                  </header>
-                  <main>
-                    <slot></slot>  
-                  </main>
-                  <footer>
-                      <slot name="footer"></slot>
-                    </footer>
-                
-              </div>
+             <div>博客</div>
+          `
+        })
+        Vue.component("cmp-more",{
+          template:`
+            <div>more</div>
           `
         })
 
         const vm = new Vue({
             el:"#app",
            data:{
-             postFontSize:1
-            ,
-             posts:[
-             {title:"标题", content:"内容内容",id:1},
-             {title:"标题1", content:"内容内容",id:2},
-             {title:"标题2", content:"内容内容",id:3}
+             cmpPage:"cmp-post",
+             pages:[
+               {name:"博客",cmp:"cmp-post",id:0},
+               {name:"more",cmp:"cmp-more",id:1}
              ]
-            },
+           }
            
           
         })
