@@ -9,50 +9,45 @@
 </head>
 <body>
     <div id="app">
-        {{ msg }}
+        <div  :style="{fontSize:postFontSize + 'em' }">
+          <blog-post v-for="post in posts" :post = "post" :key="post.id"
+            @enlarge-text="postFontSize += 0.1"
+          
+          />
+        </div>
+       
+       
 
     </div>
     <script src="./vue.js"></script>
   
     <script>
+        Vue.component("blog-post",{
+          props:{
+            post:Object,
+          },
+          template:`
+              <div>
+                  <h3>{{ post.title }}</h3>
+                  <div>{{ post.content }}</div>  
+                  <button @click="$emit('enlarge-text')">放大字号</button>
+                
+              </div>
+          `
+        })
+
         const vm = new Vue({
             el:"#app",
            data:{
-             msg:"hello world"
+             postFontSize:1
+            ,
+             posts:[
+             {title:"标题", content:"内容内容",id:1},
+             {title:"标题1", content:"内容内容",id:2},
+             {title:"标题2", content:"内容内容",id:3}
+             ]
             },
-            methods:{
-              handle(){
-                console.log('xxx');
-              }
-            },
-           beforeCreate(){
-              console.log('---beforeCreate---');
-              console.log(this);
-           } ,
-           created(){
-              console.log("---created--");
-              console.log(this.msg)
-           },
-           beforeMount(){
-              console.log("---beforeMount---");
-              console.log(this.$el)
-           },
-           mounted(){
-              console.log("---mounted---")
-              console.log(this.$el)
-           },
-           beforeUpdate(){
-
-           },
-           update(){
-
-           },
-           beforeDestroy(){
-
-           },
-           destoryed(){
-
-           }
+           
           
         })
 
