@@ -9,40 +9,54 @@
 </head>
 <body>
     <div id="app">
-        
+        {{ msg }}
 
     </div>
     <script src="./vue.js"></script>
-    <script src="./axios.js"></script>
+  
     <script>
         const vm = new Vue({
             el:"#app",
            data:{
-              handleShow(){
-                axios({
-                  method:"get",
-                  url:""
-                })
+             msg:"hello world"
+            },
+            methods:{
+              handle(){
+                console.log('xxx');
               }
-            }
+            },
+           beforeCreate(){
+              console.log('---beforeCreate---');
+              console.log(this);
+           } ,
+           created(){
+              console.log("---created--");
+              console.log(this.msg)
+           },
+           beforeMount(){
+              console.log("---beforeMount---");
+              console.log(this.$el)
+           },
+           mounted(){
+              console.log("---mounted---")
+              console.log(this.$el)
+           },
+           beforeUpdate(){
+
+           },
+           update(){
+
+           },
+           beforeDestroy(){
+
+           },
+           destoryed(){
+
+           }
           
         })
 
-        axios.all([
-          axios.get("/a"),
-          axios.get("/b")
-        ]).then(axios.spread((aRes,bRes)=>{
-          console.log(aRes,bRes);
-        }))
-
-      axios.interceptors.request.use(request=>{
-        return request;
-      })
-
-      axios.interceptors.response.use(response=>{
-        return response;
-      })
-      
+     
     </script>
 </body>
 </html>
